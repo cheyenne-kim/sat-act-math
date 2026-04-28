@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACT / SAT Math Lab</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+.section{display:none}.section.active{display:block;animation:fi .2s ease}
+@keyframes fi{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+.choice-btn{transition:all .12s ease;cursor:pointer}
+.choice-btn:hover:not(:disabled){transform:translateY(-1px);border-color:#7c3aed!important;background:#f5f3ff!important}
+.choice-btn.correct{background:#d1fae5!important;border-color:#10b981!important;color:#065f46!important;font-weight:700}
+.choice-btn.wrong{background:#fee2e2!important;border-color:#ef4444!important;color:#991b1b!important}
+.bar{transition:width .4s cubic-bezier(.4,0,.2,1)}
+.ch:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(15,23,42,.09);transition:all .15s}
+.npill{transition:all .15s}
+.formula{font-family:'Courier New',monospace;background:#f8f7ff;border:1px solid #e0d9ff;border-radius:8px;padding:.35rem .7rem;font-size:.85rem;color:#4c1d95;display:inline-block;margin:.15rem}
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased" style="font-family:'Inter',system-ui,sans-serif">
+
+<header style="background:linear-gradient(135deg,#1e1b4b 0%,#4c1d95 50%,#065f46 100%)" class="text-white px-5 py-10">
+  <div class="max-w-5xl mx-auto">
+    <div class="flex items-center gap-4 mb-2">
+      <div class="rounded-2xl p-3" style="background:rgba(255,255,255,.12)">
+        <svg class="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      </div>
+      <div>
+        <h1 class="text-4xl font-extrabold tracking-tight">ACT / SAT Math Lab</h1>
+        <p class="mt-1 text-lg" style="color:rgba(196,181,253,.9)">40 practice problems · Formula sheets · Score-moving strategy</p>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
+      <div class="rounded-xl p-3 border" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18)"><div class="text-xs uppercase tracking-widest font-semibold mb-1" style="color:rgba(196,181,253,.8)">ACT Math</div><div class="font-bold text-sm">60 min · 60 Q · calc OK</div></div>
+      <div class="rounded-xl p-3 border" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18)"><div class="text-xs uppercase tracking-widest font-semibold mb-1" style="color:rgba(196,181,253,.8)">Digital SAT Math</div><div class="font-bold text-sm">70 min · 44 Q · 2 modules</div></div>
+      <div class="rounded-xl p-3 border" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18)"><div class="text-xs uppercase tracking-widest font-semibold mb-1" style="color:rgba(196,181,253,.8)">Practice Problems</div><div class="font-bold text-sm">40 questions (20 ACT + 20 SAT)</div></div>
+      <div class="rounded-xl p-3 border" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18)"><div class="text-xs uppercase tracking-widest font-semibold mb-1" style="color:rgba(196,181,253,.8)">Core Method</div><div class="font-bold text-sm">Know the formula. Work the steps.</div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
+  <div class="max-w-5xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-2">
+    <div class="flex flex-wrap gap-1.5" id="navPills">
+      <button class="npill px-3.5 py-1.5 rounded-full text-sm font-bold bg-violet-600 text-white border border-violet-600" data-section="overview">Overview</button>
+      <button class="npill px-3.5 py-1.5 rounded-full text-sm font-bold border border-slate-200 text-slate-600 hover:border-violet-400 hover:text-violet-700" data-section="act">ACT Math</button>
+      <button class="npill px-3.5 py-1.5 rounded-full text-sm font-bold border border-slate-200 text-slate-600 hover:border-violet-400 hover:text-violet-700" data-section="sat">SAT Math</button>
+      <button class="npill px-3.5 py-1.5 rounded-full text-sm font-bold border border-slate-200 text-slate-600 hover:border-violet-400 hover:text-violet-700" data-section="formulas">Formula Sheets</button>
+      <button class="npill px-3.5 py-1.5 rounded-full text-sm font-bold border border-slate-200 text-slate-600 hover:border-violet-400 hover:text-violet-700" data-section="strategies">Strategies</button>
+      <button class="npill px-3.5 py-1.5 rounded-full text-sm font-bold border border-slate-200 text-slate-600 hover:border-violet-400 hover:text-violet-700" data-section="practice">Practice Lab</button>
+    </div>
+    <button id="resetBtn" class="npill px-3.5 py-1.5 rounded-full text-sm font-bold border border-slate-200 text-slate-500 hover:border-red-400 hover:text-red-600">Reset</button>
+  </div>
+</nav>
+
+<main class="max-w-5xl mx-auto px-4 py-7 space-y-5">
+
+<!-- ═══ OVERVIEW ═══ -->
+<section class="section active" id="overview">
+  <div class="grid md:grid-cols-2 gap-5">
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 ch">
+      <p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-2">Start Here</p>
+      <h2 class="text-xl font-extrabold text-slate-900 mb-3">What Actually Improves Math Scores</h2>
+      <p class="text-slate-600 text-sm leading-relaxed mb-4">Most math mistakes are not knowledge gaps — they're <strong>execution gaps</strong>. Students know the formula but mis-apply it under time pressure. The fix is building clean, repeatable problem-solving habits.</p>
+      <div class="space-y-2.5">
+        <div class="border-l-4 border-violet-500 pl-3 py-0.5"><p class="font-bold text-sm">1. Read the question twice.</p><p class="text-xs text-slate-500 mt-0.5">Most wrong answers come from answering a different question than was asked.</p></div>
+        <div class="border-l-4 border-violet-500 pl-3 py-0.5"><p class="font-bold text-sm">2. Write every step.</p><p class="text-xs text-slate-500 mt-0.5">Mental math causes arithmetic errors. Pencil-and-paper steps catch them.</p></div>
+        <div class="border-l-4 border-violet-500 pl-3 py-0.5"><p class="font-bold text-sm">3. Check your answer against the question.</p><p class="text-xs text-slate-500 mt-0.5">Did you find x, or did the question ask for 2x + 1?</p></div>
+        <div class="border-l-4 border-violet-500 pl-3 py-0.5"><p class="font-bold text-sm">4. Know when to skip and return.</p><p class="text-xs text-slate-500 mt-0.5">A hard problem at the end of an ACT section costs you easy points at the beginning of the next one.</p></div>
+      </div>
+    </div>
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 ch">
+      <p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-2">Self-Diagnosis</p>
+      <h2 class="text-xl font-extrabold text-slate-900 mb-4">Where You're Losing Points</h2>
+      <div class="space-y-2.5">
+        <div class="bg-slate-50 rounded-xl p-3 border border-slate-100"><p class="font-bold text-sm mb-0.5">Arithmetic errors on easy questions</p><p class="text-xs text-slate-500">Write out your steps. Don't do 3-step calculations in your head.</p></div>
+        <div class="bg-slate-50 rounded-xl p-3 border border-slate-100"><p class="font-bold text-sm mb-0.5">Misread word problems</p><p class="text-xs text-slate-500">Underline what the question is actually asking for before solving.</p></div>
+        <div class="bg-slate-50 rounded-xl p-3 border border-slate-100"><p class="font-bold text-sm mb-0.5">Forgot a formula</p><p class="text-xs text-slate-500">Memorize the 20 key formulas. The Formula Sheets tab has them all.</p></div>
+        <div class="bg-slate-50 rounded-xl p-3 border border-slate-100"><p class="font-bold text-sm mb-0.5">Ran out of time</p><p class="text-xs text-slate-500">Skip problems that will take more than 90 seconds. Come back with fresh eyes.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="grid md:grid-cols-2 gap-5">
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 ch">
+      <div class="flex items-center gap-2 mb-3"><span class="bg-violet-100 text-violet-700 rounded-full px-3 py-1 text-xs font-extrabold">ACT</span><h2 class="text-lg font-extrabold text-slate-900">Calculator Allowed · 5 Choices</h2></div>
+      <p class="text-sm text-slate-600 leading-relaxed mb-3">ACT Math is one continuous 60-question section in increasing difficulty. Questions cover pre-algebra through basic trig. You have 1 minute per question on average — later questions require more time.</p>
+      <div class="space-y-1.5 text-sm text-slate-600">
+        <div class="flex gap-2"><span class="text-violet-500 font-bold">→</span><p>Answer choices are A B C D E (five options)</p></div>
+        <div class="flex gap-2"><span class="text-violet-500 font-bold">→</span><p>Questions get harder as you go — don't get stuck early</p></div>
+        <div class="flex gap-2"><span class="text-violet-500 font-bold">→</span><p>No formula sheet provided — you must memorize key formulas</p></div>
+        <div class="flex gap-2"><span class="text-violet-500 font-bold">→</span><p>No guessing penalty — fill every bubble</p></div>
+      </div>
+    </div>
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 ch">
+      <div class="flex items-center gap-2 mb-3"><span class="bg-emerald-100 text-emerald-700 rounded-full px-3 py-1 text-xs font-extrabold">SAT</span><h2 class="text-lg font-extrabold text-slate-900">Calculator Throughout · 4 Choices + Grid-In</h2></div>
+      <p class="text-sm text-slate-600 leading-relaxed mb-3">Digital SAT Math has two adaptive 35-minute modules. About 75% are multiple choice (4 options), and about 25% are student-produced response (grid-in) where you type your own answer.</p>
+      <div class="space-y-1.5 text-sm text-slate-600">
+        <div class="flex gap-2"><span class="text-emerald-500 font-bold">→</span><p>The Desmos graphing calculator is built in — use it</p></div>
+        <div class="flex gap-2"><span class="text-emerald-500 font-bold">→</span><p>A reference sheet with key formulas is provided</p></div>
+        <div class="flex gap-2"><span class="text-emerald-500 font-bold">→</span><p>Grid-in answers are never negative; fractions and decimals are valid</p></div>
+        <div class="flex gap-2"><span class="text-emerald-500 font-bold">→</span><p>Module 2 adapts to your module 1 performance</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+    <p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-3">4-Week Math Blueprint</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div class="bg-violet-50 border border-violet-100 rounded-xl p-4"><p class="text-violet-700 font-extrabold text-xs uppercase tracking-widest mb-1">Week 1</p><p class="font-bold text-slate-800 text-sm mb-1">Diagnose</p><p class="text-xs text-slate-500 leading-relaxed">Timed practice. Categorize every miss: was it a formula gap, algebra error, or misread?</p></div>
+      <div class="bg-emerald-50 border border-emerald-100 rounded-xl p-4"><p class="text-emerald-700 font-extrabold text-xs uppercase tracking-widest mb-1">Week 2</p><p class="font-bold text-slate-800 text-sm mb-1">Fill Formula Gaps</p><p class="text-xs text-slate-500 leading-relaxed">Memorize every formula on the sheet. Quiz yourself daily until they're automatic.</p></div>
+      <div class="bg-blue-50 border border-blue-100 rounded-xl p-4"><p class="text-blue-700 font-extrabold text-xs uppercase tracking-widest mb-1">Week 3</p><p class="font-bold text-slate-800 text-sm mb-1">Drill Weakest Topics</p><p class="text-xs text-slate-500 leading-relaxed">20 problems daily on your worst 2 categories. Write out every step.</p></div>
+      <div class="bg-orange-50 border border-orange-100 rounded-xl p-4"><p class="text-orange-700 font-extrabold text-xs uppercase tracking-widest mb-1">Week 4</p><p class="font-bold text-slate-800 text-sm mb-1">Timed Full Sections</p><p class="text-xs text-slate-500 leading-relaxed">Simulate test conditions. Track which question numbers you're skipping.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ACT MATH ═══ -->
+<section class="section" id="act">
+  <div class="grid md:grid-cols-2 gap-5">
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+      <p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-2">ACT Math Format</p>
+      <h2 class="text-xl font-extrabold text-slate-900 mb-3">60 Questions · 60 Minutes</h2>
+      <div class="flex flex-wrap gap-2 mb-4"><span class="bg-violet-100 text-violet-700 rounded-full px-3 py-1 text-xs font-bold">60 min</span><span class="bg-violet-100 text-violet-700 rounded-full px-3 py-1 text-xs font-bold">60 questions</span><span class="bg-green-100 text-green-700 rounded-full px-3 py-1 text-xs font-bold">Calculator allowed</span><span class="bg-orange-100 text-orange-700 rounded-full px-3 py-1 text-xs font-bold">5 answer choices</span></div>
+      <p class="text-sm text-slate-600 leading-relaxed mb-4">Questions increase in difficulty as you move through the section. The first 20 questions should take less than a minute each; reserve more time for questions 40–60.</p>
+      <div class="space-y-2">
+        <div class="border-l-4 border-violet-500 pl-3"><p class="font-bold text-sm">Q 1–20 · Easy</p><p class="text-xs text-slate-500">Pre-algebra, basic algebra. Aim for ~45 sec each.</p></div>
+        <div class="border-l-4 border-violet-400 pl-3"><p class="font-bold text-sm">Q 21–40 · Medium</p><p class="text-xs text-slate-500">Intermediate algebra, coordinate geometry. ~60–75 sec each.</p></div>
+        <div class="border-l-4 border-violet-300 pl-3"><p class="font-bold text-sm">Q 41–60 · Hard</p><p class="text-xs text-slate-500">Plane geometry, trig, complex algebra. Skip freely; return if time allows.</p></div>
+      </div>
+    </div>
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+      <p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-2">Content Areas</p>
+      <h2 class="text-xl font-extrabold text-slate-900 mb-4">What Gets Tested (Approx. %)</h2>
+      <div class="space-y-2">
+        <div class="flex items-center gap-3"><div class="w-24 text-xs font-bold text-slate-600 text-right">Pre-Algebra</div><div class="flex-1 bg-slate-100 rounded-full h-2"><div class="bg-violet-500 h-2 rounded-full" style="width:23%"></div></div><div class="text-xs text-slate-500 w-8">~23%</div></div>
+        <div class="flex items-center gap-3"><div class="w-24 text-xs font-bold text-slate-600 text-right">Elem. Algebra</div><div class="flex-1 bg-slate-100 rounded-full h-2"><div class="bg-violet-500 h-2 rounded-full" style="width:17%"></div></div><div class="text-xs text-slate-500 w-8">~17%</div></div>
+        <div class="flex items-center gap-3"><div class="w-24 text-xs font-bold text-slate-600 text-right">Inter. Algebra</div><div class="flex-1 bg-slate-100 rounded-full h-2"><div class="bg-violet-500 h-2 rounded-full" style="width:17%"></div></div><div class="text-xs text-slate-500 w-8">~17%</div></div>
+        <div class="flex items-center gap-3"><div class="w-24 text-xs font-bold text-slate-600 text-right">Coord. Geom.</div><div class="flex-1 bg-slate-100 rounded-full h-2"><div class="bg-violet-500 h-2 rounded-full" style="width:15%"></div></div><div class="text-xs text-slate-500 w-8">~15%</div></div>
+        <div class="flex items-center gap-3"><div class="w-24 text-xs font-bold text-slate-600 text-right">Plane Geom.</div><div class="flex-1 bg-slate-100 rounded-full h-2"><div class="bg-violet-500 h-2 rounded-full" style="width:23%"></div></div><div class="text-xs text-slate-500 w-8">~23%</div></div>
+        <div class="flex items-center gap-3"><div class="w-24 text-xs font-bold text-slate-600 text-right">Trigonometry</div><div class="flex-1 bg-slate-100 rounded-full h-2"><div class="bg-violet-500 h-2 rounded-full" style="width:7%"></div></div><div class="text-xs text-slate-500 w-8">~7%</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 ch"><p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-2">Pre-Algebra</p><p class="text-sm text-slate-600 leading-relaxed mb-2">Integers, fractions, decimals, percents, ratios, proportions, basic stats, and probability.</p><div class="bg-violet-50 border border-violet-100 rounded-lg p-2.5 text-xs text-violet-800"><strong>Key skill:</strong> Percent change = (new − old) / old × 100</div></div>
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 ch"><p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-2">Elementary Algebra</p><p class="text-sm text-slate-600 leading-relaxed mb-2">Solve linear equations and inequalities, simplify expressions, substitute into formulas, evaluate functions.</p><div class="bg-violet-50 border border-violet-100 rounded-lg p-2.5 text-xs text-violet-800"><strong>Key skill:</strong> Isolate the variable in 2–3 steps</div></div>
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 ch"><p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-2">Intermediate Algebra</p><p class="text-sm text-slate-600 leading-relaxed mb-2">Quadratics, systems of equations, functions, radical expressions, complex numbers, matrices.</p><div class="bg-violet-50 border border-violet-100 rounded-lg p-2.5 text-xs text-violet-800"><strong>Key skill:</strong> Factor quadratics before using the quadratic formula</div></div>
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 ch"><p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-2">Coordinate Geometry</p><p class="text-sm text-slate-600 leading-relaxed mb-2">Lines, slopes, distance, midpoint, parabolas, circles, transformations on the coordinate plane.</p><div class="bg-violet-50 border border-violet-100 rounded-lg p-2.5 text-xs text-violet-800"><strong>Key skill:</strong> slope = (y₂−y₁)/(x₂−x₁)</div></div>
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 ch"><p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-2">Plane Geometry</p><p class="text-sm text-slate-600 leading-relaxed mb-2">Angles, triangles, quadrilaterals, polygons, circles, 3D shapes (volume, surface area). Usually includes a diagram.</p><div class="bg-violet-50 border border-violet-100 rounded-lg p-2.5 text-xs text-violet-800"><strong>Key skill:</strong> Triangle angles sum to 180°; draw and label diagrams</div></div>
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 ch"><p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-2">Trigonometry</p><p class="text-sm text-slate-600 leading-relaxed mb-2">SOHCAHTOA, trig identities, the unit circle, radians, law of sines, law of cosines.</p><div class="bg-violet-50 border border-violet-100 rounded-lg p-2.5 text-xs text-violet-800"><strong>Key identity:</strong> sin²θ + cos²θ = 1</div></div>
+  </div>
+</section>
+
+<!-- ═══ SAT MATH ═══ -->
+<section class="section" id="sat">
+  <div class="grid md:grid-cols-2 gap-5">
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+      <p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-2">Digital SAT Math</p>
+      <h2 class="text-xl font-extrabold text-slate-900 mb-3">44 Questions · 70 Minutes</h2>
+      <div class="flex flex-wrap gap-2 mb-4"><span class="bg-emerald-100 text-emerald-700 rounded-full px-3 py-1 text-xs font-bold">70 min total</span><span class="bg-emerald-100 text-emerald-700 rounded-full px-3 py-1 text-xs font-bold">44 questions</span><span class="bg-blue-100 text-blue-700 rounded-full px-3 py-1 text-xs font-bold">2 adaptive modules</span><span class="bg-orange-100 text-orange-700 rounded-full px-3 py-1 text-xs font-bold">~95 sec/Q</span></div>
+      <div class="space-y-2.5">
+        <div class="border-l-4 border-emerald-500 pl-3"><p class="font-bold text-sm">Module 1 (22 Q, 35 min)</p><p class="text-xs text-slate-500 mt-0.5">Mixed difficulty. Your performance determines whether Module 2 is harder or easier.</p></div>
+        <div class="border-l-4 border-emerald-500 pl-3"><p class="font-bold text-sm">Module 2 (22 Q, 35 min)</p><p class="text-xs text-slate-500 mt-0.5">Adaptive. High scorers get a harder module (higher ceiling). Don't try to guess which you got — just solve.</p></div>
+        <div class="border-l-4 border-emerald-500 pl-3"><p class="font-bold text-sm">Grid-In (student-produced response)</p><p class="text-xs text-slate-500 mt-0.5">About 25% of questions. Type your own answer. No negative answers. Fractions and decimals accepted.</p></div>
+      </div>
+    </div>
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+      <p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-2">Content Areas</p>
+      <h2 class="text-xl font-extrabold text-slate-900 mb-4">Four Domains (Approx. %)</h2>
+      <div class="space-y-3">
+        <div class="bg-blue-50 border border-blue-100 rounded-xl p-3"><div class="flex justify-between items-center mb-1"><p class="font-extrabold text-xs text-blue-700 uppercase tracking-widest">Algebra</p><span class="text-xs font-bold text-blue-600">~35%</span></div><p class="text-xs text-slate-600">Linear equations, systems, inequalities, linear functions. The most tested domain.</p></div>
+        <div class="bg-violet-50 border border-violet-100 rounded-xl p-3"><div class="flex justify-between items-center mb-1"><p class="font-extrabold text-xs text-violet-700 uppercase tracking-widest">Advanced Math</p><span class="text-xs font-bold text-violet-600">~35%</span></div><p class="text-xs text-slate-600">Quadratics, polynomials, exponentials, rational/radical equations, function manipulation.</p></div>
+        <div class="bg-orange-50 border border-orange-100 rounded-xl p-3"><div class="flex justify-between items-center mb-1"><p class="font-extrabold text-xs text-orange-700 uppercase tracking-widest">Problem-Solving &amp; Data</p><span class="text-xs font-bold text-orange-600">~15%</span></div><p class="text-xs text-slate-600">Ratios, percents, proportions, probability, statistics, interpreting tables and graphs.</p></div>
+        <div class="bg-green-50 border border-green-100 rounded-xl p-3"><div class="flex justify-between items-center mb-1"><p class="font-extrabold text-xs text-green-700 uppercase tracking-widest">Geometry &amp; Trig</p><span class="text-xs font-bold text-green-600">~15%</span></div><p class="text-xs text-slate-600">Area, volume, Pythagorean theorem, trig ratios, circles, coordinate geometry.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+    <p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-3">SAT-Specific Tips</p>
+    <div class="grid sm:grid-cols-3 gap-4">
+      <div class="bg-slate-50 rounded-xl p-4 border border-slate-100"><p class="font-bold text-sm mb-1">Use Desmos aggressively</p><p class="text-xs text-slate-600 leading-relaxed">The built-in Desmos calculator can graph equations and find intersections. Use it for any problem involving a curve or system — it saves time on hard problems.</p></div>
+      <div class="bg-slate-50 rounded-xl p-4 border border-slate-100"><p class="font-bold text-sm mb-1">Read the reference sheet</p><p class="text-xs text-slate-600 leading-relaxed">The SAT provides a reference sheet with geometry formulas. Know what's on it so you don't waste time memorizing things you can look up — and know what's NOT on it (trig identities, quadratic formula).</p></div>
+      <div class="bg-slate-50 rounded-xl p-4 border border-slate-100"><p class="font-bold text-sm mb-1">Grid-in strategy</p><p class="text-xs text-slate-600 leading-relaxed">Double-check grid-ins — no answer choices to catch errors. Answers are never negative. If you get a fraction, simplify it before entering. Both fraction and decimal forms work.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FORMULA SHEETS ═══ -->
+<section class="section" id="formulas">
+  <div class="grid md:grid-cols-2 gap-5">
+    <!-- Algebra -->
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+      <p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-3">Algebra</p>
+      <div class="space-y-3">
+        <div><p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">Linear Equations</p><div class="space-y-1"><div class="formula">slope-intercept: y = mx + b</div><div class="formula">point-slope: y − y₁ = m(x − x₁)</div><div class="formula">slope: m = (y₂ − y₁) / (x₂ − x₁)</div><div class="formula">standard form: Ax + By = C</div></div></div>
+        <div><p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">Quadratics</p><div class="space-y-1"><div class="formula">standard: ax² + bx + c = 0</div><div class="formula">quadratic formula: x = (−b ± √(b²−4ac)) / 2a</div><div class="formula">discriminant: b² − 4ac</div><div class="formula">&nbsp;&nbsp;• &gt; 0 → 2 real solutions</div><div class="formula">&nbsp;&nbsp;• = 0 → 1 real solution</div><div class="formula">&nbsp;&nbsp;• &lt; 0 → no real solutions</div><div class="formula">vertex form: y = a(x − h)² + k</div><div class="formula">vertex x: x = −b / (2a)</div></div></div>
+        <div><p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">Factoring Patterns</p><div class="space-y-1"><div class="formula">difference of squares: a²−b² = (a+b)(a−b)</div><div class="formula">perfect square: (a+b)² = a²+2ab+b²</div><div class="formula">perfect square: (a−b)² = a²−2ab+b²</div></div></div>
+      </div>
+    </div>
+    <!-- Geometry -->
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+      <p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-3">Geometry</p>
+      <div class="space-y-3">
+        <div><p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">Triangles</p><div class="space-y-1"><div class="formula">area: A = ½bh</div><div class="formula">Pythagorean: a² + b² = c²</div><div class="formula">angles sum to 180°</div><div class="formula">30-60-90 sides: x, x√3, 2x</div><div class="formula">45-45-90 sides: x, x, x√2</div></div></div>
+        <div><p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">Circles</p><div class="space-y-1"><div class="formula">area: A = πr²</div><div class="formula">circumference: C = 2πr</div><div class="formula">arc length: (θ/360) × 2πr</div><div class="formula">sector area: (θ/360) × πr²</div><div class="formula">equation: (x−h)² + (y−k)² = r²</div></div></div>
+        <div><p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">Other Shapes</p><div class="space-y-1"><div class="formula">rectangle area: A = lw</div><div class="formula">rectangle perimeter: P = 2l + 2w</div><div class="formula">trapezoid area: A = ½(b₁ + b₂)h</div><div class="formula">cylinder volume: V = πr²h</div><div class="formula">sphere volume: V = (4/3)πr³</div><div class="formula">cone volume: V = (1/3)πr²h</div><div class="formula">rectangular box: V = lwh</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="grid md:grid-cols-2 gap-5">
+    <!-- Trig -->
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+      <p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-3">Trigonometry</p>
+      <div class="space-y-3">
+        <div><p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">SOHCAHTOA (Right Triangle)</p><div class="space-y-1"><div class="formula">sin θ = opposite / hypotenuse</div><div class="formula">cos θ = adjacent / hypotenuse</div><div class="formula">tan θ = opposite / adjacent</div><div class="formula">tan θ = sin θ / cos θ</div></div></div>
+        <div><p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">Key Identities</p><div class="space-y-1"><div class="formula">sin²θ + cos²θ = 1</div><div class="formula">1 + tan²θ = sec²θ</div><div class="formula">sin(90°−θ) = cos θ</div></div></div>
+        <div><p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">Common Values</p><div class="grid grid-cols-3 gap-1 text-xs text-slate-700 mt-1"><div class="font-bold text-center">θ</div><div class="font-bold text-center">sin θ</div><div class="font-bold text-center">cos θ</div><div class="text-center bg-slate-50 rounded p-1">0°</div><div class="text-center bg-slate-50 rounded p-1">0</div><div class="text-center bg-slate-50 rounded p-1">1</div><div class="text-center bg-slate-50 rounded p-1">30°</div><div class="text-center bg-slate-50 rounded p-1">½</div><div class="text-center bg-slate-50 rounded p-1">√3/2</div><div class="text-center bg-slate-50 rounded p-1">45°</div><div class="text-center bg-slate-50 rounded p-1">√2/2</div><div class="text-center bg-slate-50 rounded p-1">√2/2</div><div class="text-center bg-slate-50 rounded p-1">60°</div><div class="text-center bg-slate-50 rounded p-1">√3/2</div><div class="text-center bg-slate-50 rounded p-1">½</div><div class="text-center bg-slate-50 rounded p-1">90°</div><div class="text-center bg-slate-50 rounded p-1">1</div><div class="text-center bg-slate-50 rounded p-1">0</div></div></div>
+      </div>
+    </div>
+    <!-- Stats & Other -->
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+      <p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-3">Statistics, Probability &amp; Other</p>
+      <div class="space-y-3">
+        <div><p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">Statistics</p><div class="space-y-1"><div class="formula">mean = sum of values / count</div><div class="formula">median = middle value (ordered)</div><div class="formula">mode = most frequent value</div><div class="formula">range = max − min</div></div></div>
+        <div><p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">Probability</p><div class="space-y-1"><div class="formula">P(event) = favorable outcomes / total outcomes</div><div class="formula">P(A and B) = P(A) × P(B) [independent]</div><div class="formula">P(A or B) = P(A) + P(B) − P(A and B)</div></div></div>
+        <div><p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">Coordinate Geometry</p><div class="space-y-1"><div class="formula">distance: d = √((x₂−x₁)² + (y₂−y₁)²)</div><div class="formula">midpoint: ((x₁+x₂)/2, (y₁+y₂)/2)</div></div></div>
+        <div><p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1.5">Exponents &amp; Radicals</p><div class="space-y-1"><div class="formula">aᵐ × aⁿ = aᵐ⁺ⁿ</div><div class="formula">aᵐ / aⁿ = aᵐ⁻ⁿ</div><div class="formula">(aᵐ)ⁿ = aᵐⁿ</div><div class="formula">a⁰ = 1 (a ≠ 0)</div><div class="formula">a⁻ⁿ = 1/aⁿ</div><div class="formula">a^(1/n) = ⁿ√a</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STRATEGIES ═══ -->
+<section class="section" id="strategies">
+  <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+    <p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-2">Core Techniques</p>
+    <h2 class="text-xl font-extrabold text-slate-900 mb-5">Five Math Strategies That Actually Work</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="bg-violet-50 border border-violet-100 rounded-xl p-5"><p class="font-extrabold text-sm text-violet-700 mb-2">1. Plug In Numbers</p><p class="text-xs text-slate-700 leading-relaxed mb-3">When a problem has variables in the answer choices, pick a simple number for the variable, solve with that number, then see which answer matches. Works great for percent, ratio, and "in terms of" questions.</p><div class="bg-white border border-violet-200 rounded-lg p-2.5 text-xs text-violet-800"><strong>Best for:</strong> "If x is increased by 20%, the new value is..." → Let x = 100, new value = 120, check choices.</div></div>
+      <div class="bg-emerald-50 border border-emerald-100 rounded-xl p-5"><p class="font-extrabold text-sm text-emerald-700 mb-2">2. Backsolve</p><p class="text-xs text-slate-700 leading-relaxed mb-3">When the answer choices are numbers, start with choice C (or B for ACT), substitute it back into the problem, and see if it works. If the result is too big, try a smaller choice; too small, try larger.</p><div class="bg-white border border-emerald-200 rounded-lg p-2.5 text-xs text-emerald-800"><strong>Best for:</strong> "If 3x + 5 = 20, what is x?" → Try C first, adjust direction.</div></div>
+      <div class="bg-blue-50 border border-blue-100 rounded-xl p-5"><p class="font-extrabold text-sm text-blue-700 mb-2">3. Draw It Out</p><p class="text-xs text-slate-700 leading-relaxed mb-3">Geometry problems without diagrams should always get one. Label every angle and length the problem gives you. Often the answer becomes obvious once the diagram is complete.</p><div class="bg-white border border-blue-200 rounded-lg p-2.5 text-xs text-blue-800"><strong>Best for:</strong> Any geometry problem — especially word problems that describe a shape without showing it.</div></div>
+      <div class="bg-orange-50 border border-orange-100 rounded-xl p-5"><p class="font-extrabold text-sm text-orange-700 mb-2">4. Estimate and Eliminate</p><p class="text-xs text-slate-700 leading-relaxed mb-3">For multi-step calculation problems, estimate the answer range first. Then eliminate answer choices that are clearly too big or small. Often you can narrow to one or two choices without full calculation.</p><div class="bg-white border border-orange-200 rounded-lg p-2.5 text-xs text-orange-800"><strong>Best for:</strong> Problems with widely spread answer choices (e.g., 5, 50, 500, 5000).</div></div>
+      <div class="bg-red-50 border border-red-100 rounded-xl p-5"><p class="font-extrabold text-sm text-red-700 mb-2">5. Watch the Question</p><p class="text-xs text-slate-700 leading-relaxed mb-3">The single most common math error is solving for x when the question asks for 2x, or finding the area when it asks for the perimeter. Underline what the question is asking for before you start calculating.</p><div class="bg-white border border-red-200 rounded-lg p-2.5 text-xs text-red-800"><strong>Watch for:</strong> "What is the value of x + 3?" after finding x = 5. The answer is 8, not 5.</div></div>
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-5"><p class="font-extrabold text-sm text-slate-700 mb-2">Calculator Strategy</p><p class="text-xs text-slate-700 leading-relaxed mb-3">Use the calculator for arithmetic, not thinking. Set it up to check answers quickly. On the SAT, use Desmos to graph equations and find intersections visually — it's faster than solving algebraically for many problems.</p><div class="bg-white border border-slate-300 rounded-lg p-2.5 text-xs text-slate-700"><strong>Don't rely on it for:</strong> Order of operations, negative exponents, or substituting into expressions — do those steps by hand first.</div></div>
+    </div>
+  </div>
+  <div class="grid md:grid-cols-2 gap-5">
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+      <p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-2">Common Traps</p>
+      <h2 class="text-lg font-extrabold text-slate-900 mb-4">How Test Makers Catch You</h2>
+      <div class="space-y-2.5">
+        <div class="border-l-4 border-red-400 pl-3"><p class="font-bold text-sm">Partial answers in the choices</p><p class="text-xs text-slate-500 mt-0.5">If the question asks for x + y, one of the wrong answers will be x alone and one will be y alone. Solve all the way.</p></div>
+        <div class="border-l-4 border-red-400 pl-3"><p class="font-bold text-sm">Units confusion</p><p class="text-xs text-slate-500 mt-0.5">Hours vs. minutes, feet vs. inches, miles vs. kilometers. Check that your units match before computing.</p></div>
+        <div class="border-l-4 border-red-400 pl-3"><p class="font-bold text-sm">Exponent errors with negatives</p><p class="text-xs text-slate-500 mt-0.5">(−3)² = 9 but −3² = −9. Parentheses matter. Write them out carefully.</p></div>
+        <div class="border-l-4 border-red-400 pl-3"><p class="font-bold text-sm">Diagram not to scale (ACT)</p><p class="text-xs text-slate-500 mt-0.5">ACT geometry diagrams may not be drawn to scale. Don't estimate angles visually — use the properties.</p></div>
+        <div class="border-l-4 border-red-400 pl-3"><p class="font-bold text-sm">Forgetting to simplify</p><p class="text-xs text-slate-500 mt-0.5">An unsimplified answer may match none of the choices. Always simplify fractions and radicals.</p></div>
+      </div>
+    </div>
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+      <p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-2">Time Management</p>
+      <h2 class="text-lg font-extrabold text-slate-900 mb-4">Pacing Rules</h2>
+      <div class="space-y-2.5">
+        <div class="border-l-4 border-violet-400 pl-3"><p class="font-bold text-sm">ACT: 1 minute average</p><p class="text-xs text-slate-500 mt-0.5">Bank time on Q1–20. Spend extra time on Q41–60. If a problem takes more than 90 seconds, skip and return.</p></div>
+        <div class="border-l-4 border-emerald-400 pl-3"><p class="font-bold text-sm">SAT: ~95 seconds average</p><p class="text-xs text-slate-500 mt-0.5">The adaptive format means hard problems are worth the same as easy ones. Don't over-invest in any single problem.</p></div>
+        <div class="border-l-4 border-orange-400 pl-3"><p class="font-bold text-sm">The 3-pass system</p><p class="text-xs text-slate-500 mt-0.5">Pass 1: Answer every problem you can solve quickly. Pass 2: Return to medium-difficulty skips. Pass 3: Guess remaining with best elimination.</p></div>
+        <div class="border-l-4 border-blue-400 pl-3"><p class="font-bold text-sm">Never leave blank on ACT</p><p class="text-xs text-slate-500 mt-0.5">No penalty for wrong answers. A random guess has a 20% chance of being right. A blank is always 0%.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRACTICE LAB ═══ -->
+<section class="section" id="practice">
+  <div class="flex flex-col lg:flex-row gap-5 items-start">
+    <aside class="lg:w-64 flex-shrink-0 lg:sticky lg:top-16 space-y-4">
+      <div class="rounded-2xl p-5 text-white" style="background:linear-gradient(135deg,#1e1b4b,#4c1d95)">
+        <p class="text-xs uppercase tracking-widest font-bold mb-1" style="color:rgba(196,181,253,.8)">Score</p>
+        <p class="text-4xl font-extrabold mb-0.5" id="scoreStat">0 / 40</p>
+        <p class="text-xs mb-3" style="color:rgba(255,255,255,.7)" id="modeLabel">0 answered</p>
+        <div class="h-2 rounded-full" style="background:rgba(255,255,255,.15)"><div class="bar h-2 rounded-full" style="background:linear-gradient(90deg,#8b5cf6,#10b981);width:0%" id="meterFill"></div></div>
+      </div>
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
+        <p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-2">By Category</p>
+        <div class="space-y-1.5 text-sm">
+          <div class="flex justify-between"><span class="text-slate-600">ACT Math</span><span class="font-bold" id="actStat">0/20</span></div>
+          <div class="flex justify-between"><span class="text-slate-600">SAT Math</span><span class="font-bold" id="satStat">0/20</span></div>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
+        <p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-2">Timer</p>
+        <p class="text-3xl font-extrabold tabular-nums mb-2" id="timerDisplay">9:00</p>
+        <div class="flex gap-1.5 mb-2">
+          <button id="timerStart" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-violet-600 text-white hover:bg-violet-700">Start</button>
+          <button id="timerReset" class="px-3 py-1.5 rounded-lg text-xs font-bold border border-slate-200 text-slate-600 hover:border-slate-400">Reset</button>
+        </div>
+        <select id="timerPreset" class="w-full px-2 py-1.5 rounded-lg text-xs font-bold border border-slate-200 text-slate-600 bg-white">
+          <option value="3600">60 min (ACT Math)</option>
+          <option value="2100">35 min (SAT module)</option>
+          <option value="540" selected>9 min (ACT passage)</option>
+          <option value="90">90 sec (1 SAT Q)</option>
+        </select>
+      </div>
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
+        <p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-2">Filter</p>
+        <div class="flex flex-wrap gap-1.5 mb-3" id="filterBtns">
+          <button class="fp px-2.5 py-1 rounded-full text-xs font-bold bg-violet-600 text-white border border-violet-600" data-filter="all">All (40)</button>
+          <button class="fp px-2.5 py-1 rounded-full text-xs font-bold border border-slate-200 text-slate-600" data-filter="act">ACT</button>
+          <button class="fp px-2.5 py-1 rounded-full text-xs font-bold border border-slate-200 text-slate-600" data-filter="sat">SAT</button>
+        </div>
+        <button id="expandAll" class="w-full px-3 py-2 rounded-xl text-xs font-bold bg-violet-600 text-white hover:bg-violet-700 mb-1.5">Show All Explanations</button>
+        <button id="resetProgress" class="w-full px-3 py-2 rounded-xl text-xs font-bold border border-red-200 text-red-600 hover:bg-red-50">Reset Progress</button>
+      </div>
+    </aside>
+    <div class="flex-1 min-w-0" id="questionMount"></div>
+  </div>
+</section>
+
+</main>
+
+<div class="max-w-5xl mx-auto px-4 pb-10">
+  <div class="bg-white rounded-2xl border border-slate-200 p-5">
+    <p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-3">Official Sources</p>
+    <ul class="space-y-1.5 text-sm">
+      <li><a href="https://www.act.org/content/act/en/products-and-services/the-act/test-preparation/description-of-math-test.html" target="_blank" rel="noopener" class="text-violet-600 hover:underline">ACT Math Test Description</a></li>
+      <li><a href="https://satsuite.collegeboard.org/sat/whats-on-the-test/math" target="_blank" rel="noopener" class="text-violet-600 hover:underline">College Board: SAT Math</a></li>
+    </ul>
+  </div>
+</div>
+
+<script>
+const SK='actsat_math_v1';
+const DM={easy:{l:'Easy',c:'bg-green-100 text-green-800'},med:{l:'Medium',c:'bg-yellow-100 text-yellow-800'},hard:{l:'Hard',c:'bg-red-100 text-red-800'}};
+
+const questions=[
+// ── ACT MATH (20) ──
+{id:'am1',exam:'act',num:1,diff:'easy',type:'Pre-Algebra · Percent',
+problem:'A shirt originally costs $40 and is on sale for 25% off. What is the sale price?',
+choices:{A:'$10',B:'$25',C:'$30',D:'$32',E:'$35'},
+answer:'C',explanation:'25% of $40 = $10. Sale price = $40 − $10 = $30.'},
+
+{id:'am2',exam:'act',num:2,diff:'easy',type:'Elementary Algebra · Linear Equations',
+problem:'If 3x + 7 = 22, what is the value of x?',
+choices:{A:'3',B:'4',C:'5',D:'6',E:'7'},
+answer:'C',explanation:'3x = 22 − 7 = 15, so x = 5.'},
+
+{id:'am3',exam:'act',num:3,diff:'med',type:'Elementary Algebra · Inequalities',
+problem:'Which of the following values of x satisfies the inequality 2x − 5 > 9?',
+choices:{A:'5',B:'6',C:'7',D:'8',E:'9'},
+answer:'D',explanation:'2x > 14, so x > 7. The only choice greater than 7 is 8.'},
+
+{id:'am4',exam:'act',num:4,diff:'med',type:'Coordinate Geometry · Slope',
+problem:'What is the slope of the line passing through the points (2, 3) and (6, 11)?',
+choices:{A:'1',B:'2',C:'3',D:'4',E:'8'},
+answer:'B',explanation:'slope = (y₂ − y₁) / (x₂ − x₁) = (11 − 3) / (6 − 2) = 8 / 4 = 2.'},
+
+{id:'am5',exam:'act',num:5,diff:'easy',type:'Plane Geometry · Triangle Area',
+problem:'A triangle has a base of 8 cm and a height of 6 cm. What is its area?',
+choices:{A:'14 cm²',B:'24 cm²',C:'28 cm²',D:'48 cm²',E:'56 cm²'},
+answer:'B',explanation:'Area = ½ × base × height = ½ × 8 × 6 = 24 cm².'},
+
+{id:'am6',exam:'act',num:6,diff:'hard',type:'Intermediate Algebra · Quadratics',
+problem:'What are the solutions to x² − 5x + 6 = 0?',
+choices:{A:'x = 1 and x = 6',B:'x = 2 and x = 3',C:'x = −2 and x = −3',D:'x = −1 and x = 6',E:'x = 3 and x = 6'},
+answer:'B',explanation:'Factor: (x − 2)(x − 3) = 0, so x = 2 or x = 3. Check: each gives 0 when substituted back.'},
+
+{id:'am7',exam:'act',num:7,diff:'hard',type:'Coordinate Geometry · Circles',
+problem:'What is the radius of the circle with equation (x − 3)² + (y + 4)² = 25?',
+choices:{A:'3',B:'4',C:'5',D:'25',E:'√25 ≈ 5.6'},
+answer:'C',explanation:'Standard form: (x − h)² + (y − k)² = r². Here r² = 25, so r = √25 = 5.'},
+
+{id:'am8',exam:'act',num:8,diff:'med',type:'Pre-Algebra · Proportions',
+problem:'A recipe calls for 2 cups of flour for every 3 cups of sugar. If you use 6 cups of flour, how many cups of sugar are needed?',
+choices:{A:'7',B:'8',C:'9',D:'10',E:'12'},
+answer:'C',explanation:'Set up proportion: 2/3 = 6/x. Cross multiply: 2x = 18, so x = 9. Alternatively, 6 cups flour = 3× the recipe, so 3 × 3 = 9 cups sugar.'},
+
+{id:'am9',exam:'act',num:9,diff:'easy',type:'Plane Geometry · Angles',
+problem:'Two parallel lines are cut by a transversal. One of the alternate interior angles measures 65°. What is the measure of the other alternate interior angle?',
+choices:{A:'25°',B:'35°',C:'65°',D:'115°',E:'125°'},
+answer:'C',explanation:'Alternate interior angles are congruent when lines are parallel. Both measure 65°.'},
+
+{id:'am10',exam:'act',num:10,diff:'med',type:'Trigonometry · SOHCAHTOA',
+problem:'In a right triangle, the side opposite a 30° angle measures 5 units. What is the length of the hypotenuse?',
+choices:{A:'5',B:'5√2',C:'5√3',D:'10',E:'10√3'},
+answer:'D',explanation:'sin(30°) = opposite / hypotenuse = 5/h. Since sin(30°) = 0.5, we get h = 5 / 0.5 = 10.'},
+
+{id:'am11',exam:'act',num:11,diff:'med',type:'Intermediate Algebra · Systems',
+problem:'If 2x + y = 10 and x − y = 2, what is the value of x?',
+choices:{A:'2',B:'3',C:'4',D:'5',E:'6'},
+answer:'C',explanation:'Add the two equations: (2x + y) + (x − y) = 10 + 2 → 3x = 12 → x = 4.'},
+
+{id:'am12',exam:'act',num:12,diff:'med',type:'Plane Geometry · Sector Area',
+problem:'A circle has a radius of 6. What is the area of a sector with a central angle of 90°?',
+choices:{A:'3π',B:'6π',C:'9π',D:'12π',E:'36π'},
+answer:'C',explanation:'Sector area = (θ/360°) × πr² = (90/360) × π(36) = (1/4)(36π) = 9π.'},
+
+{id:'am13',exam:'act',num:13,diff:'easy',type:'Pre-Algebra · Probability',
+problem:'A bag contains 4 red marbles, 3 blue marbles, and 5 green marbles. What is the probability of randomly selecting a green marble?',
+choices:{A:'1/4',B:'1/3',C:'5/12',D:'5/7',E:'5/6'},
+answer:'C',explanation:'P(green) = green marbles / total marbles = 5 / (4 + 3 + 5) = 5/12.'},
+
+{id:'am14',exam:'act',num:14,diff:'med',type:'Elementary Algebra · Functions',
+problem:'If f(x) = 3x² − 2x + 1, what is f(2)?',
+choices:{A:'7',B:'9',C:'11',D:'13',E:'15'},
+answer:'B',explanation:'f(2) = 3(2²) − 2(2) + 1 = 3(4) − 4 + 1 = 12 − 4 + 1 = 9.'},
+
+{id:'am15',exam:'act',num:15,diff:'med',type:'Trigonometry · Pythagorean Identity',
+problem:'Which of the following is equal to cos²θ + sin²θ for all values of θ?',
+choices:{A:'0',B:'1',C:'2',D:'2 sin θ cos θ',E:'tan²θ'},
+answer:'B',explanation:'This is the Pythagorean identity: sin²θ + cos²θ = 1. It is always true, for every value of θ.'},
+
+{id:'am16',exam:'act',num:16,diff:'med',type:'Coordinate Geometry · Midpoint',
+problem:'What is the midpoint of the segment connecting (−2, 4) and (6, −8)?',
+choices:{A:'(2, −2)',B:'(2, −4)',C:'(4, −2)',D:'(−4, 12)',E:'(8, 4)'},
+answer:'A',explanation:'Midpoint = ((x₁+x₂)/2, (y₁+y₂)/2) = ((−2+6)/2, (4+(−8))/2) = (4/2, −4/2) = (2, −2).'},
+
+{id:'am17',exam:'act',num:17,diff:'hard',type:'Intermediate Algebra · Discriminant',
+problem:'For the equation 2x² − 4x + 5 = 0, the discriminant equals:',
+choices:{A:'−24, meaning two complex (non-real) solutions',B:'−24, meaning two real solutions',C:'56, meaning two real solutions',D:'−36, meaning one real solution',E:'24, meaning two real solutions'},
+answer:'A',explanation:'Discriminant = b² − 4ac = (−4)² − 4(2)(5) = 16 − 40 = −24. Negative discriminant → no real solutions, two complex solutions.'},
+
+{id:'am18',exam:'act',num:18,diff:'med',type:'Plane Geometry · Volume',
+problem:'A cylinder has a radius of 3 cm and a height of 8 cm. What is its volume?',
+choices:{A:'24π cm³',B:'48π cm³',C:'72π cm³',D:'96π cm³',E:'144π cm³'},
+answer:'C',explanation:'V = πr²h = π(3²)(8) = π(9)(8) = 72π cm³.'},
+
+{id:'am19',exam:'act',num:19,diff:'hard',type:'Plane Geometry · Similar Triangles',
+problem:'Two similar triangles have side lengths in a ratio of 3:5. If the area of the smaller triangle is 27 square units, what is the area of the larger triangle?',
+choices:{A:'45',B:'75',C:'135',D:'81',E:'125'},
+answer:'B',explanation:'Areas scale as the square of the similarity ratio: (3/5)² = 9/25. So larger area = 27 × (25/9) = 75 square units.'},
+
+{id:'am20',exam:'act',num:20,diff:'med',type:'Coordinate Geometry · Vertex of Parabola',
+problem:'The parabola y = x² − 4x + 3 has its vertex at which point?',
+choices:{A:'(−2, −1)',B:'(2, −1)',C:'(2, 1)',D:'(4, 3)',E:'(−4, 3)'},
+answer:'B',explanation:'Vertex x-coordinate: x = −b/(2a) = 4/2 = 2. Plug in: y = 4 − 8 + 3 = −1. Vertex = (2, −1).'},
+
+// ── SAT MATH (20) ──
+{id:'sm1',exam:'sat',num:21,diff:'easy',type:'Algebra · Linear Equations',
+problem:'If 4x − 3 = 13, what is the value of x?',
+choices:{A:'2',B:'3',C:'4',D:'5'},
+answer:'C',explanation:'4x = 13 + 3 = 16, so x = 4.'},
+
+{id:'sm2',exam:'sat',num:22,diff:'easy',type:'Algebra · Substitution',
+problem:'If 3x + 2y = 12 and x = 2, what is the value of y?',
+choices:{A:'2',B:'3',C:'4',D:'6'},
+answer:'B',explanation:'Substitute x = 2: 3(2) + 2y = 12 → 6 + 2y = 12 → 2y = 6 → y = 3.'},
+
+{id:'sm3',exam:'sat',num:23,diff:'med',type:'Advanced Math · Expanding',
+problem:'Which of the following is equivalent to (x + 3)(x − 5)?',
+choices:{A:'x² − 2x − 15',B:'x² + 2x − 15',C:'x² − 2x + 15',D:'x² − 8x − 15'},
+answer:'A',explanation:'FOIL: x² − 5x + 3x − 15 = x² − 2x − 15. The middle terms: −5x + 3x = −2x.'},
+
+{id:'sm4',exam:'sat',num:24,diff:'hard',type:'Advanced Math · Polynomials',
+problem:'If p(x) = x³ − 2x² + x − 2, what is p(2)?',
+choices:{A:'0',B:'2',C:'4',D:'8'},
+answer:'A',explanation:'p(2) = (2)³ − 2(2)² + 2 − 2 = 8 − 8 + 2 − 2 = 0. (x = 2 is a root of this polynomial.)'},
+
+{id:'sm5',exam:'sat',num:25,diff:'med',type:'Data Analysis · Percent Change',
+problem:'A store increases a price from $80 to $100. What is the percent increase?',
+choices:{A:'20%',B:'25%',C:'80%',D:'125%'},
+answer:'B',explanation:'Percent increase = (change / original) × 100 = (20/80) × 100 = 25%.'},
+
+{id:'sm6',exam:'sat',num:26,diff:'easy',type:'Data Analysis · Mean',
+problem:'The scores of five students are 72, 85, 90, 68, and 95. What is the mean score?',
+choices:{A:'80',B:'82',C:'85',D:'90'},
+answer:'B',explanation:'Sum = 72 + 85 + 90 + 68 + 95 = 410. Mean = 410 / 5 = 82.'},
+
+{id:'sm7',exam:'sat',num:27,diff:'med',type:'Geometry · Pythagorean Theorem',
+problem:'A right triangle has legs of length 5 and 12. What is the length of the hypotenuse?',
+choices:{A:'13',B:'15',C:'17',D:'√119'},
+answer:'A',explanation:'a² + b² = c² → 5² + 12² = 25 + 144 = 169 = 13². The hypotenuse is 13. (5-12-13 is a Pythagorean triple.)'},
+
+{id:'sm8',exam:'sat',num:28,diff:'hard',type:'Geometry · Circle Equation',
+problem:'A circle with center (0, 0) passes through the point (3, 4). What is the equation of the circle?',
+choices:{A:'x² + y² = 5',B:'x² + y² = 7',C:'x² + y² = 25',D:'x² + y² = 49'},
+answer:'C',explanation:'Radius = distance from center to (3, 4) = √(3² + 4²) = √(9 + 16) = √25 = 5. Equation: x² + y² = r² = 25.'},
+
+{id:'sm9',exam:'sat',num:29,diff:'med',type:'Algebra · Absolute Value Inequality',
+problem:'Which of the following is the complete solution to |x − 3| < 5?',
+choices:{A:'x < −2 or x > 8',B:'−2 < x < 8',C:'−5 < x < 5',D:'x < −8 or x > 2'},
+answer:'B',explanation:'|x − 3| < 5 means −5 < x − 3 < 5. Add 3 to all parts: −2 < x < 8.'},
+
+{id:'sm10',exam:'sat',num:30,diff:'hard',type:'Advanced Math · Function Transformation',
+problem:'If f(x) = x², what is f(x − 2) + 3?',
+choices:{A:'x² − 4x + 7',B:'x² + 7',C:'x² − 4',D:'x² − 2x + 3'},
+answer:'A',explanation:'f(x − 2) = (x − 2)² = x² − 4x + 4. Add 3: x² − 4x + 4 + 3 = x² − 4x + 7.'},
+
+{id:'sm11',exam:'sat',num:31,diff:'easy',type:'Data Analysis · Proportions',
+problem:'A car travels 150 miles in 3 hours. At the same rate, how far will it travel in 5 hours?',
+choices:{A:'200 miles',B:'225 miles',C:'250 miles',D:'300 miles'},
+answer:'C',explanation:'Rate = 150 / 3 = 50 mph. Distance in 5 hours = 50 × 5 = 250 miles.'},
+
+{id:'sm12',exam:'sat',num:32,diff:'med',type:'Advanced Math · Exponential Equations',
+problem:'If 2ˣ = 32, what is x?',
+choices:{A:'4',B:'5',C:'6',D:'8'},
+answer:'B',explanation:'2⁵ = 32. You can verify: 2¹=2, 2²=4, 2³=8, 2⁴=16, 2⁵=32.'},
+
+{id:'sm13',exam:'sat',num:33,diff:'hard',type:'Algebra · Absolute Value Equations',
+problem:'If |2x + 1| = 7, what are the values of x?',
+choices:{A:'x = 3 or x = −4',B:'x = 4 or x = −3',C:'x = 3 or x = 4',D:'x = −4 only'},
+answer:'A',explanation:'Case 1: 2x + 1 = 7 → 2x = 6 → x = 3. Case 2: 2x + 1 = −7 → 2x = −8 → x = −4.'},
+
+{id:'sm14',exam:'sat',num:34,diff:'med',type:'Geometry · 45-45-90 Triangle',
+problem:'In a right triangle, one angle is 45° and the hypotenuse is 10. What is the length of each leg?',
+choices:{A:'5',B:'5√2',C:'10√2',D:'10/√3'},
+answer:'B',explanation:'In a 45-45-90 triangle, legs = hypotenuse / √2 = 10 / √2 = 10√2 / 2 = 5√2.'},
+
+{id:'sm15',exam:'sat',num:35,diff:'hard',type:'Data Analysis · Standard Deviation',
+problem:'In a data set, the mean is 50 and the standard deviation is 10. A data point is 2 standard deviations above the mean. What is that value?',
+choices:{A:'60',B:'65',C:'70',D:'75'},
+answer:'C',explanation:'Value = mean + (2 × standard deviation) = 50 + 2(10) = 50 + 20 = 70.'},
+
+{id:'sm16',exam:'sat',num:36,diff:'med',type:'Advanced Math · Radical Equations',
+problem:'If √(x + 5) = 4, what is x?',
+choices:{A:'9',B:'11',C:'19',D:'21'},
+answer:'B',explanation:'Square both sides: x + 5 = 16. Subtract 5: x = 11. Check: √(11 + 5) = √16 = 4. ✓'},
+
+{id:'sm17',exam:'sat',num:37,diff:'easy',type:'Algebra · Word Problem',
+problem:'A store sells notebooks for $3 each and pens for $1.50 each. Maria buys 4 notebooks and some pens and spends exactly $18. How many pens did she buy?',
+choices:{A:'3',B:'4',C:'5',D:'6'},
+answer:'B',explanation:'4 notebooks = 4 × $3 = $12. Remaining: $18 − $12 = $6. Pens: $6 ÷ $1.50 = 4 pens.'},
+
+{id:'sm18',exam:'sat',num:38,diff:'hard',type:'Advanced Math · System with Quadratic',
+problem:'If y = x² − 1 and y = x + 1, what are the x-values of the intersection points?',
+choices:{A:'x = 0 and x = 2',B:'x = −1 and x = 2',C:'x = 1 and x = −2',D:'x = 0 and x = 1'},
+answer:'B',explanation:'Set equal: x² − 1 = x + 1 → x² − x − 2 = 0 → (x − 2)(x + 1) = 0 → x = 2 or x = −1.'},
+
+{id:'sm19',exam:'sat',num:39,diff:'med',type:'Geometry · Volume Scaling',
+problem:'A rectangular box has dimensions 4 × 5 × 6. If all dimensions are doubled, by what factor does the volume increase?',
+choices:{A:'2',B:'4',C:'6',D:'8'},
+answer:'D',explanation:'Volume scales as the cube of the linear scale factor. Scale factor = 2, so volume factor = 2³ = 8. (Original V = 120; new V = 8 × 10 × 12 = 960; 960/120 = 8.)'},
+
+{id:'sm20',exam:'sat',num:40,diff:'hard',type:'Data Analysis · Probability Without Replacement',
+problem:'A bag contains 3 red balls and 5 blue balls. Two balls are drawn without replacement. What is the probability that both are red?',
+choices:{A:'3/28',B:'9/64',C:'3/8',D:'1/4'},
+answer:'A',explanation:'P(1st red) = 3/8. P(2nd red | 1st was red) = 2/7. P(both red) = (3/8) × (2/7) = 6/56 = 3/28.'}
+];
+
+const SK2='actsat_math_v1';
+function loadP(){try{return JSON.parse(localStorage.getItem(SK2))||{};}catch{return{};}}
+function saveP(p){try{localStorage.setItem(SK2,JSON.stringify(p));}catch{}}
+let progress=loadP(),pFilter='all',showAll=false;
+
+function setSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id===id));
+  document.querySelectorAll('#navPills [data-section]').forEach(b=>{
+    const on=b.dataset.section===id;
+    b.className=on?'npill px-3.5 py-1.5 rounded-full text-sm font-bold bg-violet-600 text-white border border-violet-600':'npill px-3.5 py-1.5 rounded-full text-sm font-bold border border-slate-200 text-slate-600 hover:border-violet-400 hover:text-violet-700';
+  });
+  if(id==='practice')renderQ();
+}
+document.querySelectorAll('#navPills [data-section]').forEach(b=>b.addEventListener('click',()=>setSection(b.dataset.section)));
+
+function filterQ(q){
+  if(pFilter==='all')return true;
+  if(pFilter==='act')return q.exam==='act';
+  if(pFilter==='sat')return q.exam==='sat';
+  return true;
+}
+
+function renderQ(){
+  const mount=document.getElementById('questionMount');
+  const vis=questions.filter(filterQ);
+  mount.innerHTML=vis.map(q=>{
+    const d=DM[q.diff];
+    const eb=q.exam==='act'?'bg-violet-100 text-violet-700':'bg-emerald-100 text-emerald-700';
+    const keys=Object.keys(q.choices);
+    const rows=keys.map(k=>`<button class="choice-btn w-full text-left px-4 py-3 rounded-xl border-2 border-slate-200 text-sm leading-relaxed text-slate-700 bg-white" data-q="${q.id}" data-c="${k}"><span class="font-extrabold mr-1">${k})</span>${q.choices[k]}</button>`).join('');
+    const fbStyle=showAll?'':'display:none';
+    return`<div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 mb-4" id="card-${q.id}">
+<div class="flex flex-wrap items-center gap-2 mb-3">
+<div class="w-7 h-7 rounded-full bg-violet-600 text-white flex items-center justify-center text-xs font-extrabold">${q.num}</div>
+<span class="rounded-full px-2.5 py-0.5 text-xs font-extrabold ${eb}">${q.exam.toUpperCase()}</span>
+<span class="rounded-full px-2.5 py-0.5 text-xs font-extrabold ${d.c}">${d.l}</span>
+<span class="text-slate-400 text-xs">${q.type}</span>
+</div>
+<p class="font-semibold text-sm text-slate-800 leading-relaxed mb-4 bg-slate-50 border border-slate-100 rounded-xl p-4">${q.problem}</p>
+<div class="space-y-2 mb-3">${rows}</div>
+<div id="fb-${q.id}" style="${fbStyle}" class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+<p class="font-extrabold text-sm mb-1">Answer: <span class="text-violet-600">${q.answer}</span></p>
+<p class="text-slate-600 text-sm leading-relaxed">${q.explanation}</p>
+</div></div>`;
+  }).join('');
+  mount.querySelectorAll('.choice-btn').forEach(btn=>btn.addEventListener('click',()=>score(btn.dataset.q,btn.dataset.c)));
+  restoreState();
+  updateStats();
+}
+
+function score(qid,choice){
+  if(progress[qid])return;
+  const q=questions.find(x=>x.id===qid);
+  progress[qid]={result:choice===q.answer?'correct':'wrong',pick:choice};
+  saveP(progress);
+  applyState(q);
+  const fb=document.getElementById(`fb-${qid}`);
+  if(fb)fb.style.display='';
+  updateStats();
+}
+
+function applyState(q){
+  document.querySelectorAll(`[data-q="${q.id}"]`).forEach(btn=>{
+    btn.disabled=true;
+    btn.classList.remove('correct','wrong');
+    if(btn.dataset.c===q.answer)btn.classList.add('correct');
+    if(progress[q.id]?.result==='wrong'&&btn.dataset.c===progress[q.id].pick)btn.classList.add('wrong');
+  });
+}
+
+function restoreState(){
+  questions.forEach(q=>{
+    if(!progress[q.id])return;
+    applyState(q);
+    const fb=document.getElementById(`fb-${q.id}`);
+    if(fb)fb.style.display='';
+  });
+}
+
+function updateStats(){
+  const vis=questions.filter(filterQ);
+  const cor=vis.filter(q=>progress[q.id]?.result==='correct').length;
+  const ans=vis.filter(q=>progress[q.id]).length;
+  document.getElementById('scoreStat').textContent=`${cor} / ${vis.length}`;
+  document.getElementById('modeLabel').textContent=`${ans} answered`;
+  document.getElementById('meterFill').style.width=`${vis.length?(cor/vis.length)*100:0}%`;
+  const ct=(e)=>{const qs=questions.filter(q=>q.exam===e);const c=qs.filter(q=>progress[q.id]?.result==='correct').length;return`${c}/${qs.length}`;};
+  document.getElementById('actStat').textContent=ct('act');
+  document.getElementById('satStat').textContent=ct('sat');
+}
+
+document.querySelectorAll('.fp').forEach(b=>{
+  b.addEventListener('click',()=>{
+    pFilter=b.dataset.filter;
+    document.querySelectorAll('.fp').forEach(p=>{p.className=p===b?'fp px-2.5 py-1 rounded-full text-xs font-bold bg-violet-600 text-white border border-violet-600':'fp px-2.5 py-1 rounded-full text-xs font-bold border border-slate-200 text-slate-600';});
+    renderQ();
+  });
+});
+
+document.getElementById('expandAll').addEventListener('click',()=>{
+  showAll=!showAll;
+  document.getElementById('expandAll').textContent=showAll?'Hide Explanations':'Show All Explanations';
+  renderQ();
+});
+
+function doReset(){
+  if(!confirm('Reset all progress?'))return;
+  progress={};saveP(progress);renderQ();
+}
+document.getElementById('resetProgress').addEventListener('click',doReset);
+document.getElementById('resetBtn').addEventListener('click',doReset);
+
+// Timer
+let tSec=540,tOn=false,tInt=null;
+function fmtT(s){return`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;}
+function updT(){document.getElementById('timerDisplay').textContent=fmtT(tSec);}
+document.getElementById('timerPreset').addEventListener('change',e=>{tSec=+e.target.value;if(tOn){clearInterval(tInt);tOn=false;document.getElementById('timerStart').textContent='Start';}updT();});
+document.getElementById('timerStart').addEventListener('click',()=>{
+  if(tOn){clearInterval(tInt);tOn=false;document.getElementById('timerStart').textContent='Start';}
+  else{if(tSec<=0)tSec=+document.getElementById('timerPreset').value;tOn=true;document.getElementById('timerStart').textContent='Pause';tInt=setInterval(()=>{tSec--;updT();if(tSec<=0){clearInterval(tInt);tOn=false;document.getElementById('timerStart').textContent='Start';document.getElementById('timerDisplay').textContent='Time!';}},1000);}
+});
+document.getElementById('timerReset').addEventListener('click',()=>{clearInterval(tInt);tOn=false;document.getElementById('timerStart').textContent='Start';tSec=+document.getElementById('timerPreset').value;updT();});
+updT();updateStats();
+</script>
+</body>
+</html>
