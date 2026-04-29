@@ -34,7 +34,7 @@
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
       <div class="rounded-xl p-3 border" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18)"><div class="text-xs uppercase tracking-widest font-semibold mb-1" style="color:rgba(196,181,253,.8)">ACT Math</div><div class="font-bold text-sm">60 min · 60 Q · calc OK</div></div>
       <div class="rounded-xl p-3 border" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18)"><div class="text-xs uppercase tracking-widest font-semibold mb-1" style="color:rgba(196,181,253,.8)">Digital SAT Math</div><div class="font-bold text-sm">70 min · 44 Q · 2 modules</div></div>
-      <div class="rounded-xl p-3 border" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18)"><div class="text-xs uppercase tracking-widest font-semibold mb-1" style="color:rgba(196,181,253,.8)">Practice Problems</div><div class="font-bold text-sm">40 questions (20 ACT + 20 SAT)</div></div>
+      <div class="rounded-xl p-3 border" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18)"><div class="text-xs uppercase tracking-widest font-semibold mb-1" style="color:rgba(196,181,253,.8)">Practice Problems</div><div class="font-bold text-sm">56 questions (28 ACT + 28 SAT)</div></div></div>
       <div class="rounded-xl p-3 border" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18)"><div class="text-xs uppercase tracking-widest font-semibold mb-1" style="color:rgba(196,181,253,.8)">Core Method</div><div class="font-bold text-sm">Know the formula. Work the steps.</div></div>
     </div>
   </div>
@@ -49,6 +49,7 @@
       <button class="npill px-3.5 py-1.5 rounded-full text-sm font-bold border border-slate-200 text-slate-600 hover:border-violet-400 hover:text-violet-700" data-section="formulas">Formula Sheets</button>
       <button class="npill px-3.5 py-1.5 rounded-full text-sm font-bold border border-slate-200 text-slate-600 hover:border-violet-400 hover:text-violet-700" data-section="strategies">Strategies</button>
       <button class="npill px-3.5 py-1.5 rounded-full text-sm font-bold border border-slate-200 text-slate-600 hover:border-violet-400 hover:text-violet-700" data-section="practice">Practice Lab</button>
+      <button class="npill px-3.5 py-1.5 rounded-full text-sm font-bold border border-slate-200 text-slate-600 hover:border-violet-400 hover:text-violet-700" data-section="advanced">Advanced Topics</button>
     </div>
     <button id="resetBtn" class="npill px-3.5 py-1.5 rounded-full text-sm font-bold border border-slate-200 text-slate-500 hover:border-red-400 hover:text-red-600">Reset</button>
   </div>
@@ -315,6 +316,230 @@
   </div>
 </section>
 
+<!-- ═══ ADVANCED TOPICS ═══ -->
+<section class="section" id="advanced">
+  <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 mb-5">
+    <p class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-2">Hard Question Types</p>
+    <h2 class="text-2xl font-extrabold text-slate-900 mb-2">Advanced Topics Deep Dive</h2>
+    <p class="text-slate-600 text-sm leading-relaxed">These six topic areas generate the hardest questions on both the ACT and SAT. Mastering them is what separates a 30+ (ACT) or 700+ (SAT Math) from an average score.</p>
+  </div>
+
+  <!-- 1. Functions & Transformations -->
+  <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 mb-5 ch">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="bg-violet-100 text-violet-700 rounded-full px-3 py-1 text-xs font-extrabold">Topic 1</span>
+      <h3 class="text-lg font-extrabold text-slate-900">Functions &amp; Transformations</h3>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5">
+      <div>
+        <p class="text-sm text-slate-600 leading-relaxed mb-3">Function problems on hard questions go beyond simple substitution. You need to handle composition, inverses, piecewise definitions, and graph shifts.</p>
+        <div class="space-y-2.5">
+          <div class="border-l-4 border-violet-500 pl-3"><p class="font-bold text-sm">Composition f(g(x))</p><p class="text-xs text-slate-500 mt-0.5">Substitute g(x) wherever you see x in f. Work inside-out: evaluate g first, then plug result into f.</p></div>
+          <div class="border-l-4 border-violet-500 pl-3"><p class="font-bold text-sm">Inverse Functions f⁻¹(x)</p><p class="text-xs text-slate-500 mt-0.5">Swap x and y, then solve for y. Verify: f(f⁻¹(x)) = x. The graph of f⁻¹ is a reflection of f over y = x.</p></div>
+          <div class="border-l-4 border-violet-500 pl-3"><p class="font-bold text-sm">Piecewise Functions</p><p class="text-xs text-slate-500 mt-0.5">Determine which piece applies based on the input value. Don't mix up the domain conditions.</p></div>
+          <div class="border-l-4 border-violet-500 pl-3"><p class="font-bold text-sm">Graph Transformations</p><p class="text-xs text-slate-500 mt-0.5">f(x − h) + k shifts right h and up k. f(−x) reflects over y-axis. −f(x) reflects over x-axis. f(2x) compresses horizontally by ½.</p></div>
+        </div>
+      </div>
+      <div class="space-y-3">
+        <div class="bg-violet-50 border border-violet-100 rounded-xl p-4">
+          <p class="text-xs font-extrabold text-violet-700 uppercase tracking-widest mb-2">Worked Example</p>
+          <p class="text-sm font-bold text-slate-800 mb-2">If f(x) = 2x + 1 and g(x) = x², find f(g(3)).</p>
+          <p class="text-xs text-slate-600 leading-relaxed"><span class="font-bold">Step 1:</span> g(3) = 3² = 9<br><span class="font-bold">Step 2:</span> f(9) = 2(9) + 1 = <strong>19</strong></p>
+        </div>
+        <div class="bg-violet-50 border border-violet-100 rounded-xl p-4">
+          <p class="text-xs font-extrabold text-violet-700 uppercase tracking-widest mb-2">Worked Example — Inverse</p>
+          <p class="text-sm font-bold text-slate-800 mb-2">Find the inverse of f(x) = 3x − 6.</p>
+          <p class="text-xs text-slate-600 leading-relaxed"><span class="font-bold">Step 1:</span> y = 3x − 6<br><span class="font-bold">Step 2:</span> Swap: x = 3y − 6<br><span class="font-bold">Step 3:</span> Solve: y = (x + 6)/3, so f⁻¹(x) = <strong>(x + 6)/3</strong></p>
+        </div>
+        <div class="bg-amber-50 border border-amber-100 rounded-xl p-3">
+          <p class="text-xs font-bold text-amber-700 mb-1">Common Trap</p>
+          <p class="text-xs text-slate-600">f(g(x)) ≠ g(f(x)). The order matters — always check which function goes inside which.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Quadratics & Polynomials -->
+  <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 mb-5 ch">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="bg-violet-100 text-violet-700 rounded-full px-3 py-1 text-xs font-extrabold">Topic 2</span>
+      <h3 class="text-lg font-extrabold text-slate-900">Quadratics &amp; Polynomials</h3>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5">
+      <div>
+        <p class="text-sm text-slate-600 leading-relaxed mb-3">Advanced quadratic questions go beyond basic factoring. Expect completing the square, Vieta's formulas, and the polynomial remainder theorem.</p>
+        <div class="space-y-2.5">
+          <div class="border-l-4 border-violet-500 pl-3"><p class="font-bold text-sm">Completing the Square</p><p class="text-xs text-slate-500 mt-0.5">x² + bx = (x + b/2)² − (b/2)². Use to find vertex form y = a(x − h)² + k or the center of a circle.</p></div>
+          <div class="border-l-4 border-violet-500 pl-3"><p class="font-bold text-sm">Vieta's Formulas</p><p class="text-xs text-slate-500 mt-0.5">For ax² + bx + c = 0: sum of roots = −b/a, product of roots = c/a. Lets you find root sums/products without solving.</p></div>
+          <div class="border-l-4 border-violet-500 pl-3"><p class="font-bold text-sm">Polynomial Remainder Theorem</p><p class="text-xs text-slate-500 mt-0.5">When polynomial p(x) is divided by (x − k), the remainder equals p(k). If p(k) = 0, then (x − k) is a factor.</p></div>
+          <div class="border-l-4 border-violet-500 pl-3"><p class="font-bold text-sm">Discriminant b² − 4ac</p><p class="text-xs text-slate-500 mt-0.5">&gt; 0: two real roots. = 0: one repeated root. &lt; 0: no real roots (complex). Used to determine number of solutions.</p></div>
+        </div>
+      </div>
+      <div class="space-y-3">
+        <div class="bg-violet-50 border border-violet-100 rounded-xl p-4">
+          <p class="text-xs font-extrabold text-violet-700 uppercase tracking-widest mb-2">Worked Example — Vieta's</p>
+          <p class="text-sm font-bold text-slate-800 mb-2">For 2x² − 8x + 3 = 0, find the sum and product of the roots.</p>
+          <p class="text-xs text-slate-600 leading-relaxed"><span class="font-bold">Sum:</span> −b/a = −(−8)/2 = <strong>4</strong><br><span class="font-bold">Product:</span> c/a = 3/2 = <strong>1.5</strong></p>
+        </div>
+        <div class="bg-violet-50 border border-violet-100 rounded-xl p-4">
+          <p class="text-xs font-extrabold text-violet-700 uppercase tracking-widest mb-2">Worked Example — Remainder Theorem</p>
+          <p class="text-sm font-bold text-slate-800 mb-2">What is the remainder when x³ − 2x + 5 is divided by (x − 3)?</p>
+          <p class="text-xs text-slate-600 leading-relaxed">Plug in x = 3: (3)³ − 2(3) + 5 = 27 − 6 + 5 = <strong>26</strong></p>
+        </div>
+        <div class="bg-amber-50 border border-amber-100 rounded-xl p-3">
+          <p class="text-xs font-bold text-amber-700 mb-1">Common Trap</p>
+          <p class="text-xs text-slate-600">Vieta's sum = −b/a, NOT just −b. Always divide by the leading coefficient a.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Exponentials & Logarithms -->
+  <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 mb-5 ch">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="bg-emerald-100 text-emerald-700 rounded-full px-3 py-1 text-xs font-extrabold">Topic 3</span>
+      <h3 class="text-lg font-extrabold text-slate-900">Exponentials &amp; Logarithms</h3>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5">
+      <div>
+        <p class="text-sm text-slate-600 leading-relaxed mb-3">The SAT heavily tests exponential models. The ACT favors solving exponential equations by matching bases. Both test log properties.</p>
+        <div class="space-y-2.5">
+          <div class="border-l-4 border-emerald-500 pl-3"><p class="font-bold text-sm">Growth / Decay Model</p><p class="text-xs text-slate-500 mt-0.5">A = A₀ · bᵗ — identify the initial value A₀, base b, and time t. Growth: b &gt; 1. Decay: 0 &lt; b &lt; 1.</p></div>
+          <div class="border-l-4 border-emerald-500 pl-3"><p class="font-bold text-sm">Log Definition</p><p class="text-xs text-slate-500 mt-0.5">log_b(x) = y means b^y = x. So log₂(8) = 3 because 2³ = 8.</p></div>
+          <div class="border-l-4 border-emerald-500 pl-3"><p class="font-bold text-sm">Log Properties</p><p class="text-xs text-slate-500 mt-0.5">log(ab) = log a + log b · log(a/b) = log a − log b · log(aⁿ) = n·log a</p></div>
+          <div class="border-l-4 border-emerald-500 pl-3"><p class="font-bold text-sm">Solving Exponential Equations</p><p class="text-xs text-slate-500 mt-0.5">Rewrite both sides with the same base, then set exponents equal. Or take log of both sides.</p></div>
+        </div>
+      </div>
+      <div class="space-y-3">
+        <div class="bg-emerald-50 border border-emerald-100 rounded-xl p-4">
+          <p class="text-xs font-extrabold text-emerald-700 uppercase tracking-widest mb-2">Worked Example — Decay Model</p>
+          <p class="text-sm font-bold text-slate-800 mb-2">A car worth $20,000 loses 15% of its value each year. What is it worth after 3 years?</p>
+          <p class="text-xs text-slate-600 leading-relaxed"><span class="font-bold">Model:</span> A = 20000 · (0.85)³<br>= 20000 × 0.614125 ≈ <strong>$12,283</strong></p>
+        </div>
+        <div class="bg-emerald-50 border border-emerald-100 rounded-xl p-4">
+          <p class="text-xs font-extrabold text-emerald-700 uppercase tracking-widest mb-2">Worked Example — Logs</p>
+          <p class="text-sm font-bold text-slate-800 mb-2">Solve: log₃(x) = 4</p>
+          <p class="text-xs text-slate-600">Convert: 3⁴ = x → x = <strong>81</strong></p>
+        </div>
+        <div class="bg-amber-50 border border-amber-100 rounded-xl p-3">
+          <p class="text-xs font-bold text-amber-700 mb-1">Common Trap</p>
+          <p class="text-xs text-slate-600">log(a + b) ≠ log a + log b. Log properties only apply to multiplication/division inside the log.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Statistics & Counting -->
+  <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 mb-5 ch">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="bg-blue-100 text-blue-700 rounded-full px-3 py-1 text-xs font-extrabold">Topic 4</span>
+      <h3 class="text-lg font-extrabold text-slate-900">Statistics &amp; Counting</h3>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5">
+      <div>
+        <p class="text-sm text-slate-600 leading-relaxed mb-3">Both tests hit combinatorics and probability. The SAT also tests conditional probability and data interpretation from two-way tables.</p>
+        <div class="space-y-2.5">
+          <div class="border-l-4 border-blue-500 pl-3"><p class="font-bold text-sm">Permutations P(n, r)</p><p class="text-xs text-slate-500 mt-0.5">Ordered arrangements of r items from n: P(n,r) = n! / (n−r)!. Use when order matters (e.g., race finishing positions).</p></div>
+          <div class="border-l-4 border-blue-500 pl-3"><p class="font-bold text-sm">Combinations C(n, r)</p><p class="text-xs text-slate-500 mt-0.5">Unordered selections: C(n,r) = n! / [r!(n−r)!]. Use when order doesn't matter (e.g., choosing a committee).</p></div>
+          <div class="border-l-4 border-blue-500 pl-3"><p class="font-bold text-sm">Conditional Probability</p><p class="text-xs text-slate-500 mt-0.5">P(A | B) = P(A and B) / P(B). In two-way tables, restrict your denominator to the given condition row/column.</p></div>
+          <div class="border-l-4 border-blue-500 pl-3"><p class="font-bold text-sm">Normal Distribution / Z-Scores</p><p class="text-xs text-slate-500 mt-0.5">z = (x − μ) / σ. About 68% within ±1σ, 95% within ±2σ, 99.7% within ±3σ.</p></div>
+        </div>
+      </div>
+      <div class="space-y-3">
+        <div class="bg-blue-50 border border-blue-100 rounded-xl p-4">
+          <p class="text-xs font-extrabold text-blue-700 uppercase tracking-widest mb-2">Worked Example — Combinations</p>
+          <p class="text-sm font-bold text-slate-800 mb-2">How many ways can 3 students be chosen from a group of 8?</p>
+          <p class="text-xs text-slate-600 leading-relaxed">C(8,3) = 8! / [3! × 5!] = (8 × 7 × 6) / (3 × 2 × 1) = 336 / 6 = <strong>56</strong></p>
+        </div>
+        <div class="bg-blue-50 border border-blue-100 rounded-xl p-4">
+          <p class="text-xs font-extrabold text-blue-700 uppercase tracking-widest mb-2">Worked Example — Conditional Probability</p>
+          <p class="text-sm font-bold text-slate-800 mb-2">Of 100 students: 40 play sports, 30 play music, 15 do both. Given a student plays sports, what's the probability they also play music?</p>
+          <p class="text-xs text-slate-600">P(music | sports) = 15/40 = <strong>3/8</strong></p>
+        </div>
+        <div class="bg-amber-50 border border-amber-100 rounded-xl p-3">
+          <p class="text-xs font-bold text-amber-700 mb-1">Perm vs. Combo</p>
+          <p class="text-xs text-slate-600">Arrangement/order/ranking → permutation. Selection/committee/group → combination.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Advanced Geometry -->
+  <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 mb-5 ch">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="bg-orange-100 text-orange-700 rounded-full px-3 py-1 text-xs font-extrabold">Topic 5</span>
+      <h3 class="text-lg font-extrabold text-slate-900">Advanced Geometry</h3>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5">
+      <div>
+        <p class="text-sm text-slate-600 leading-relaxed mb-3">The hardest geometry questions involve circle theorems, similar triangles, and 3D solids. These are rules most students never explicitly learned.</p>
+        <div class="space-y-2.5">
+          <div class="border-l-4 border-orange-500 pl-3"><p class="font-bold text-sm">Inscribed Angle Theorem</p><p class="text-xs text-slate-500 mt-0.5">An inscribed angle = half the central angle that subtends the same arc. Inscribed angles that share the same arc are equal.</p></div>
+          <div class="border-l-4 border-orange-500 pl-3"><p class="font-bold text-sm">Tangent Lines</p><p class="text-xs text-slate-500 mt-0.5">A tangent to a circle is perpendicular to the radius at the point of tangency. Tangent segments from an external point are equal in length.</p></div>
+          <div class="border-l-4 border-orange-500 pl-3"><p class="font-bold text-sm">Similar Triangles</p><p class="text-xs text-slate-500 mt-0.5">AA, SAS, SSS similarity. Corresponding sides are proportional. Set up and solve the ratio to find missing lengths.</p></div>
+          <div class="border-l-4 border-orange-500 pl-3"><p class="font-bold text-sm">3D Volume &amp; Surface Area</p><p class="text-xs text-slate-500 mt-0.5">Cone: V = ⅓πr²h. Sphere: V = (4/3)πr³, SA = 4πr². Cylinder: V = πr²h. Cross-sections of 3D shapes appear on SAT.</p></div>
+        </div>
+      </div>
+      <div class="space-y-3">
+        <div class="bg-orange-50 border border-orange-100 rounded-xl p-4">
+          <p class="text-xs font-extrabold text-orange-700 uppercase tracking-widest mb-2">Worked Example — Inscribed Angle</p>
+          <p class="text-sm font-bold text-slate-800 mb-2">A central angle subtends an arc of 110°. What is the inscribed angle that subtends the same arc?</p>
+          <p class="text-xs text-slate-600">Inscribed angle = 110° ÷ 2 = <strong>55°</strong></p>
+        </div>
+        <div class="bg-orange-50 border border-orange-100 rounded-xl p-4">
+          <p class="text-xs font-extrabold text-orange-700 uppercase tracking-widest mb-2">Worked Example — Similar Triangles</p>
+          <p class="text-sm font-bold text-slate-800 mb-2">Two similar triangles have sides 3, 4, 5 and 6, x, 10. Find x.</p>
+          <p class="text-xs text-slate-600">Scale factor = 6/3 = 2, so x = 4 × 2 = <strong>8</strong></p>
+        </div>
+        <div class="bg-amber-50 border border-amber-100 rounded-xl p-3">
+          <p class="text-xs font-bold text-amber-700 mb-1">Common Trap</p>
+          <p class="text-xs text-slate-600">The inscribed angle is half the central angle — students often flip this and double instead.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Advanced Trigonometry -->
+  <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 mb-5 ch">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="bg-pink-100 text-pink-700 rounded-full px-3 py-1 text-xs font-extrabold">Topic 6</span>
+      <h3 class="text-lg font-extrabold text-slate-900">Advanced Trigonometry</h3>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5">
+      <div>
+        <p class="text-sm text-slate-600 leading-relaxed mb-3">Beyond SOHCAHTOA: law of sines, law of cosines, and the unit circle are tested on both ACT and SAT hard questions.</p>
+        <div class="space-y-2.5">
+          <div class="border-l-4 border-pink-500 pl-3"><p class="font-bold text-sm">Law of Sines</p><p class="text-xs text-slate-500 mt-0.5">a/sin A = b/sin B = c/sin C. Use when you have two angles and a side (AAS/ASA), or two sides and a non-included angle (SSA).</p></div>
+          <div class="border-l-4 border-pink-500 pl-3"><p class="font-bold text-sm">Law of Cosines</p><p class="text-xs text-slate-500 mt-0.5">c² = a² + b² − 2ab·cos C. Use when you have SAS (two sides and included angle) or SSS (all three sides).</p></div>
+          <div class="border-l-4 border-pink-500 pl-3"><p class="font-bold text-sm">Unit Circle Key Values</p><p class="text-xs text-slate-500 mt-0.5">sin 30°=½, cos 30°=√3/2 · sin 45°=√2/2, cos 45°=√2/2 · sin 60°=√3/2, cos 60°=½ · sin 90°=1, cos 90°=0</p></div>
+          <div class="border-l-4 border-pink-500 pl-3"><p class="font-bold text-sm">Trig Identities</p><p class="text-xs text-slate-500 mt-0.5">sin²x + cos²x = 1 · tan x = sin x / cos x · sin(−x) = −sin x (odd) · cos(−x) = cos x (even)</p></div>
+        </div>
+      </div>
+      <div class="space-y-3">
+        <div class="bg-pink-50 border border-pink-100 rounded-xl p-4">
+          <p class="text-xs font-extrabold text-pink-700 uppercase tracking-widest mb-2">Worked Example — Law of Sines</p>
+          <p class="text-sm font-bold text-slate-800 mb-2">In triangle ABC, angle A = 30°, angle B = 45°, and side a = 8. Find side b.</p>
+          <p class="text-xs text-slate-600 leading-relaxed">b/sin 45° = 8/sin 30°<br>b = 8 × (sin 45°/sin 30°) = 8 × (√2/2 ÷ ½) = 8√2 ≈ <strong>11.31</strong></p>
+        </div>
+        <div class="bg-pink-50 border border-pink-100 rounded-xl p-4">
+          <p class="text-xs font-extrabold text-pink-700 uppercase tracking-widest mb-2">Worked Example — Law of Cosines</p>
+          <p class="text-sm font-bold text-slate-800 mb-2">Triangle with sides a = 5, b = 7, C = 60°. Find c.</p>
+          <p class="text-xs text-slate-600">c² = 25 + 49 − 2(5)(7)(0.5) = 74 − 35 = 39<br>c = √39 ≈ <strong>6.24</strong></p>
+        </div>
+        <div class="bg-amber-50 border border-amber-100 rounded-xl p-3">
+          <p class="text-xs font-bold text-amber-700 mb-1">When to Use Which</p>
+          <p class="text-xs text-slate-600">No right angle + given an angle-side pair → Law of Sines. No right angle + SAS or SSS → Law of Cosines.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-violet-50 border border-violet-200 rounded-2xl p-5">
+    <p class="text-xs text-violet-700 uppercase tracking-widest font-extrabold mb-2">Practice Tip</p>
+    <p class="text-sm text-slate-700 leading-relaxed">Head to the <button onclick="setSection('practice')" class="text-violet-700 font-bold underline hover:text-violet-900">Practice Lab</button> and filter by <strong>Hard</strong> difficulty to drill these advanced question types. The newest questions (ah1–ah8, sh1–sh8) specifically target the topics covered on this page.</p>
+  </div>
+</section>
+
 </main>
 
 <div class="max-w-5xl mx-auto px-4 pb-10">
@@ -532,7 +757,89 @@ answer:'D',explanation:'Volume scales as the cube of the linear scale factor. Sc
 {id:'sm20',exam:'sat',num:40,diff:'hard',type:'Data Analysis · Probability Without Replacement',
 problem:'A bag contains 3 red balls and 5 blue balls. Two balls are drawn without replacement. What is the probability that both are red?',
 choices:{A:'3/28',B:'9/64',C:'3/8',D:'1/4'},
-answer:'A',explanation:'P(1st red) = 3/8. P(2nd red | 1st was red) = 2/7. P(both red) = (3/8) × (2/7) = 6/56 = 3/28.'}
+answer:'A',explanation:'P(1st red) = 3/8. P(2nd red | 1st was red) = 2/7. P(both red) = (3/8) × (2/7) = 6/56 = 3/28.'},
+
+// ── ACT ADVANCED HARD (8) ──
+{id:'ah1',exam:'act',num:41,diff:'hard',type:'Functions · Composition',
+problem:'If f(x) = x² − 1 and g(x) = 3x + 2, what is f(g(1))?',
+choices:{A:'4',B:'15',C:'24',D:'48',E:'50'},
+answer:'C',explanation:'g(1) = 3(1) + 2 = 5. Then f(5) = 5² − 1 = 25 − 1 = 24.'},
+
+{id:'ah2',exam:'act',num:42,diff:'hard',type:'Quadratics · Completing the Square',
+problem:'What is the vertex of the parabola y = x² − 6x + 11?',
+choices:{A:'(3, 2)',B:'(−3, 2)',C:'(3, −2)',D:'(6, 11)',E:'(−6, 11)'},
+answer:'A',explanation:'Complete the square: y = (x² − 6x + 9) + 2 = (x − 3)² + 2. Vertex is (3, 2).'},
+
+{id:'ah3',exam:'act',num:43,diff:'hard',type:'Exponentials · Logarithms',
+problem:'If log₂(x) = 5, what is x?',
+choices:{A:'10',B:'25',C:'32',D:'64',E:'100'},
+answer:'C',explanation:'log₂(x) = 5 means 2⁵ = x. 2⁵ = 32.'},
+
+{id:'ah4',exam:'act',num:44,diff:'hard',type:'Counting · Permutations',
+problem:'How many different 3-letter arrangements can be made from the letters A, B, C, D, E (no repetition)?',
+choices:{A:'10',B:'20',C:'60',D:'120',E:'125'},
+answer:'C',explanation:'P(5,3) = 5!/(5−3)! = 5!/2! = (5×4×3) = 60.'},
+
+{id:'ah5',exam:'act',num:45,diff:'hard',type:'Quadratics · Vieta\'s Formulas',
+problem:'The two roots of 3x² − 12x + 7 = 0 are r and s. What is r + s?',
+choices:{A:'−4',B:'4',C:'7/3',D:'−7/3',E:'12'},
+answer:'B',explanation:'By Vieta\'s formulas, sum of roots = −b/a = −(−12)/3 = 12/3 = 4.'},
+
+{id:'ah6',exam:'act',num:46,diff:'hard',type:'Trigonometry · Law of Sines',
+problem:'In triangle ABC, angle A = 45°, angle B = 75°, and side a = 10. Which expression gives the length of side b?',
+choices:{A:'10 · sin(75°)/sin(45°)',B:'10 · sin(45°)/sin(75°)',C:'10 · cos(75°)',D:'10/sin(75°)',E:'sin(45°)/10'},
+answer:'A',explanation:'Law of sines: a/sin A = b/sin B → b = a · sin B / sin A = 10 · sin(75°)/sin(45°).'},
+
+{id:'ah7',exam:'act',num:47,diff:'hard',type:'Geometry · Inscribed Angle',
+problem:'In a circle, a central angle measures 140°. What is the measure of an inscribed angle that intercepts the same arc?',
+choices:{A:'280°',B:'140°',C:'90°',D:'70°',E:'35°'},
+answer:'D',explanation:'The inscribed angle theorem states that an inscribed angle equals half the central angle: 140° / 2 = 70°.'},
+
+{id:'ah8',exam:'act',num:48,diff:'hard',type:'Functions · Inverse',
+problem:'If f(x) = 2x + 6, what is f⁻¹(10)?',
+choices:{A:'2',B:'3',C:'4',D:'26',E:'14'},
+answer:'A',explanation:'Find the inverse: swap x and y → x = 2y + 6 → y = (x−6)/2. So f⁻¹(x) = (x−6)/2. f⁻¹(10) = (10−6)/2 = 4/2 = 2.'},
+
+// ── SAT ADVANCED HARD (8) ──
+{id:'sh1',exam:'sat',num:41,diff:'hard',type:'Exponentials · Decay Model',
+problem:'A radioactive substance has 500 grams initially and decays at 20% per hour. Which function gives the amount A remaining after t hours?',
+choices:{A:'A = 500 − 0.2t',B:'A = 500 · (0.8)^t',C:'A = 500 · (1.2)^t',D:'A = 500 · (0.2)^t'},
+answer:'B',explanation:'20% decay means 80% remains each hour. The exponential decay model is A = A₀ · (1 − r)^t = 500 · (0.8)^t.'},
+
+{id:'sh2',exam:'sat',num:42,diff:'hard',type:'Algebra · Nonlinear System',
+problem:'How many intersection points do y = x² + 2 and y = 2x + 2 have?',
+choices:{A:'0',B:'1',C:'2',D:'3'},
+answer:'C',explanation:'Set equal: x² + 2 = 2x + 2 → x² − 2x = 0 → x(x−2) = 0 → x = 0 or x = 2. Two intersection points.'},
+
+{id:'sh3',exam:'sat',num:43,diff:'hard',type:'Geometry · Completing the Square for Circles',
+problem:'What is the center of the circle x² + y² − 4x + 6y − 3 = 0?',
+choices:{A:'(4, −6)',B:'(−4, 6)',C:'(2, −3)',D:'(−2, 3)'},
+answer:'C',explanation:'Complete the square: (x²−4x+4) + (y²+6y+9) = 3+4+9 = 16 → (x−2)² + (y+3)² = 16. Center is (2, −3).'},
+
+{id:'sh4',exam:'sat',num:44,diff:'hard',type:'Polynomials · Remainder Theorem',
+problem:'When p(x) = x³ + 2x² − 5x + 1 is divided by (x − 2), what is the remainder?',
+choices:{A:'3',B:'5',C:'7',D:'9'},
+answer:'C',explanation:'By the remainder theorem, substitute x = 2: (2)³ + 2(2)² − 5(2) + 1 = 8 + 8 − 10 + 1 = 7.'},
+
+{id:'sh5',exam:'sat',num:45,diff:'hard',type:'Statistics · Conditional Probability',
+problem:'A survey shows: 60 students play sports, 40 play music, 20 do both. If a student is selected at random from the sports group, what is the probability they also play music?',
+choices:{A:'1/4',B:'1/3',C:'2/5',D:'1/2'},
+answer:'B',explanation:'P(music | sports) = P(both) / P(sports) = 20/60 = 1/3.'},
+
+{id:'sh6',exam:'sat',num:46,diff:'hard',type:'Functions · Transformation',
+problem:'The graph of f(x) is shifted 3 units right and 2 units down. Which represents the new function?',
+choices:{A:'f(x + 3) + 2',B:'f(x − 3) + 2',C:'f(x + 3) − 2',D:'f(x − 3) − 2'},
+answer:'D',explanation:'Shift right h: replace x with (x − h). Shift down k: subtract k. Result: f(x − 3) − 2.'},
+
+{id:'sh7',exam:'sat',num:47,diff:'hard',type:'Functions · Piecewise',
+problem:'f(x) = { x² + 1, x < 0 ; 2x − 3, x ≥ 0 }. What is f(−2) + f(3)?',
+choices:{A:'5',B:'7',C:'8',D:'10'},
+answer:'C',explanation:'f(−2): x < 0, so use x² + 1 = 4 + 1 = 5. f(3): x ≥ 0, so use 2(3) − 3 = 3. Sum = 5 + 3 = 8.'},
+
+{id:'sh8',exam:'sat',num:48,diff:'hard',type:'Exponentials · Growth Modeling',
+problem:'A bacteria population doubles every 4 hours. If it starts at 200 cells, which equation gives the population P after t hours?',
+choices:{A:'P = 200 · 2^t',B:'P = 200 · (0.5)^(t/4)',C:'P = 200 · 2^(t/4)',D:'P = 200 + 2t'},
+answer:'C',explanation:'The population doubles (×2) every 4 hours. After t hours, t/4 doubling periods have passed: P = 200 · 2^(t/4).'}
 ];
 
 const SK2='actsat_math_v1';
